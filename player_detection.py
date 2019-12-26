@@ -15,19 +15,19 @@ while success:
     # converting into hsv image
     hsv = cv2.cvtColor(image, cv2.COLOR_BGR2HSV)
     # green range
-    lower_green = np.array([31, 114, 74])
-    upper_green = np.array([64, 215, 255])
+    lower_green = np.array([48, 0, 0])
+    upper_green = np.array([83, 255, 255])
     # blue range
-    lower_blue = np.array([47, 0, 0])
-    upper_blue = np.array([137, 197, 255])
+    lower_blue = np.array([94, 222, 232])
+    upper_blue = np.array([167, 255, 255])
 
     # Red range
-    lower_red = np.array([0, 149, 95])
-    upper_red = np.array([11, 255, 255])
+    lower_red = np.array([0, 91, 0])
+    upper_red = np.array([36, 255, 255])
 
     # white range
-    lower_white = np.array([25, 100, 199])
-    upper_white = np.array([140, 158, 255])
+    lower_white = np.array([0, 0, 0])
+    upper_white = np.array([179, 211, 59])
 
     # Define a mask ranging from lower to uppper
     mask = cv2.inRange(hsv, lower_green, upper_green)
@@ -54,7 +54,7 @@ while success:
 
         # Detect players
         if (h >= (1.5) * w):
-            if (w > 15 and h >= 15):
+            if (w > 10 and h >= 10):
                 idx = idx + 1
                 player_img = image[y:y + h, x:x + w]
                 player_hsv = cv2.cvtColor(player_img, cv2.COLOR_BGR2HSV)
@@ -97,7 +97,7 @@ while success:
             if (nzCount >= 3):
                 # detect football
                 cv2.putText(image, 'pilka', (x - 2, y - 2), font, 0.8, (0, 255, 0), 2, cv2.LINE_AA)
-                cv2.rectangle(image, (x, y), (x + w, y + h), (0, 255, 0), 3)
+                cv2.rectangle(image, (x, y), (x + w, y + h), (0, 255, 0), 3, )
 
     cv2.imwrite("./Cropped/frame%d.jpg" % count, res)
     print
